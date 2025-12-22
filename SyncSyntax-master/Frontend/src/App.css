@@ -1,0 +1,77 @@
+#root {
+  /* Allow the app root to be full-bleed so sections can span 100% width.
+     Use the `.container` helper to constrain inner content where needed. */
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* small carousel arrow buttons used by LatestBlogs */
+.carousel-btn {
+  position: absolute;
+  top: 40%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.9);
+  border: 1px solid rgba(0,0,0,0.06);
+  width: 36px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.carousel-btn.left-0 { left: -18px }
+.carousel-btn.right-0 { right: -18px }
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+/* Profile button override to remove focus outline */
+.profile-button {
+  outline: none !important;
+  border: none !important;
+  background: transparent !important;
+  padding: 4px !important;
+}
+
+.profile-button:focus,
+.profile-button:focus-visible {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
