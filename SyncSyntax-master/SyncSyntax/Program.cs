@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;   
 using SyncSyntax.Data;
 using SyncSyntax.Models;
+using SyncSyntax.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.Configure<FormOptions>(options =>
@@ -42,6 +43,10 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+
+// Add MongoDB service for Voyagestics database
+builder.Services.AddSingleton<MongoDbService>();
+builder.Services.AddScoped<MongoRepository>();
 
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
 {
@@ -143,6 +148,10 @@ using (var scope = app.Services.CreateScope())
 
     var seeder = services.GetRequiredService<DatabaseSeeder>();
     await seeder.SeedAsync();
+
+    // Initialize MongoDB collections
+    var mongoRepo = services.GetRequiredService<MongoRepository>();
+    await mongoRepo.InitializeCollectionsAsync();
 }
 
 app.Run();

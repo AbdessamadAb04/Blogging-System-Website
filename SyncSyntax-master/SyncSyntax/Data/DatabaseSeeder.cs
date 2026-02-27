@@ -53,6 +53,20 @@ namespace SyncSyntax.Data
                 await _userManager.CreateAsync(regularUser, "User@123");
                 await _userManager.AddToRoleAsync(regularUser, "User");
             }
+
+            // Seed user with specific credentials
+            if (await _userManager.FindByEmailAsync("abdessamadstuff@gmail.com") == null)
+            {
+                var specificUser = new ApplicationUser 
+                { 
+                    UserName = "abdessamadstuff@gmail.com", 
+                    Email = "abdessamadstuff@gmail.com",
+                    RegistrationDate = DateTime.Now,
+                    Role = "Admin"
+                };
+                await _userManager.CreateAsync(specificUser, "abdessamad2004");
+                await _userManager.AddToRoleAsync(specificUser, "Admin");
+            }
         }
     }
 }
